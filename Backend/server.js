@@ -4,8 +4,15 @@ const pdfParse = require('pdf-parse');
 const cors = require('cors');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const dotenv = require('dotenv');
-dotenv.config();
+const connectDB = require('./database/config');
+const { default: userRouter } = require('./router/userRouter');
+const { default: studyRouter } = require('./router/studyRouter');
 
+// const { ClerkExpressRequireAuth } = require("@clerk/express");
+// import { ClerkExpressWithAuth } from "@clerk/express";
+// import { ClerkExpressWithAuth } from "@clerk/express";
+dotenv.config();
+// const { requireAuth, ClerkExpressWithAuth } = require("@clerk/express");
 const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -84,5 +91,16 @@ app.post("/chat", async (req, res) => {
 });
 
 
+//adding the routes for the smart tracker 
+console.log("CLERK_SECRET_KEY:", process.env.CLERK_SECRET_KEY);
+
+
+app.use('/api/users',userRouter);
+app.use('/api/users/subject',studyRouter);
+
+// database connection by rishabh
+connectDB()
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
