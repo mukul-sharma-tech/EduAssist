@@ -15,6 +15,7 @@ import QuizResult from './pages/Quiz/QuizResult';
 import QuizPage from './pages/Quiz/QuizPage';
 import ChooseTopic from './pages/explain/ChooseTopic'; // Import the ChooseTopic page
 import StoryNarrator from './pages/explain/StoryNarrator';
+import Subjects from './pages/tracker/Subject';
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/quiz-result" element={<QuizResult/>} />
         <Route path="/choose-topic" element={<ChooseTopic/>} />
         <Route path="/story" element={<StoryNarrator/>} />
+        <Route path="/tracker/subject" element={<Subjects/>} />
 
 
       </Routes>
