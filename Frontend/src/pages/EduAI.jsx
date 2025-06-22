@@ -140,7 +140,7 @@ const EduAI = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-800 to-blue-900 px-2 py-6 sm:px-4">
+    <div className="min-h-screen mt-3 bg-gradient-to-br from-purple-900 via-indigo-800 to-blue-900 px-2 py-6 sm:px-4">
       <div className="mt-8 sm:mt-12 max-w-full sm:max-w-2xl mx-auto rounded-2xl bg-white/10 backdrop-blur border border-white/20 shadow-lg p-4 sm:p-6 text-white">
         <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-4">
           Edu<span className="text-yellow-300">AI</span> 🤖

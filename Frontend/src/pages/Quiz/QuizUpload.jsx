@@ -1,6 +1,72 @@
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import axios from 'axios';
+
+// const QuizUpload = () => {
+//   const [pdfFile, setPdfFile] = useState(null);
+//   const [manualText, setManualText] = useState('');
+//   const [loading, setLoading] = useState(false);
+//   const navigate = useNavigate();
+
+//   const handleSubmit = async () => {
+//     setLoading(true);
+//     try {
+//       let content = manualText;
+
+//       if (pdfFile) {
+//         const formData = new FormData();
+//         formData.append('pdf', pdfFile);
+//         const res = await axios.post('http://localhost:5000/extract-text-pdf', formData);
+//         content = res.data.text;
+//       }
+
+//       navigate('/quiz', { state: { content } });
+//     } catch (err) {
+//       console.error(err);
+//       alert("❌ Failed to process input");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-gray-900 text-white p-6 flex flex-col items-center">
+//       <h1 className="text-3xl font-bold mb-4">📄 Quiz Generator</h1>
+
+//       <input
+//         type="file"
+//         accept="application/pdf"
+//         onChange={(e) => setPdfFile(e.target.files[0])}
+//         className="mb-4 text-sm file:bg-blue-600 file:text-white file:rounded file:px-3 file:py-1"
+//       />
+
+//       <textarea
+//         rows="10"
+//         placeholder="Or paste text here..."
+//         value={manualText}
+//         onChange={(e) => setManualText(e.target.value)}
+//         className="w-full max-w-xl bg-gray-800 text-white p-4 mb-4 rounded"
+//       />
+
+//       <button
+//         onClick={handleSubmit}
+//         className="bg-green-600 px-6 py-2 rounded hover:bg-green-700"
+//         disabled={loading}
+//       >
+//         {loading ? 'Generating Quiz...' : 'Generate Quiz'}
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default QuizUpload;
+
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { FileUp, LoaderCircle, UploadCloud } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const QuizUpload = () => {
   const [pdfFile, setPdfFile] = useState(null);
@@ -30,32 +96,39 @@ const QuizUpload = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6 flex flex-col items-center">
-      <h1 className="text-3xl font-bold mb-4">📄 Quiz Generator</h1>
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      className="min-h-screen bg-gradient-to-tr from-blue-800 via-purple-800 to-blue-900 text-white p-8 flex flex-col items-center justify-center"
+    >
+      <h1 className="text-4xl font-bold mb-6 flex items-center gap-2">
+        <FileUp size={32} /> Quiz Generator
+      </h1>
 
       <input
         type="file"
         accept="application/pdf"
         onChange={(e) => setPdfFile(e.target.files[0])}
-        className="mb-4 text-sm file:bg-blue-600 file:text-white file:rounded file:px-3 file:py-1"
+        className="mb-4 file:bg-blue-600 file:hover:bg-blue-700 file:text-white file:rounded-lg file:px-4 file:py-2 text-sm"
       />
 
       <textarea
         rows="10"
-        placeholder="Or paste text here..."
+        placeholder="📋 Or paste content here..."
         value={manualText}
         onChange={(e) => setManualText(e.target.value)}
-        className="w-full max-w-xl bg-gray-800 text-white p-4 mb-4 rounded"
+        className="w-full max-w-2xl bg-white/10 text-white placeholder-gray-300 p-4 mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
       />
 
       <button
         onClick={handleSubmit}
-        className="bg-green-600 px-6 py-2 rounded hover:bg-green-700"
+        className="flex items-center gap-2 bg-green-500 hover:bg-green-600 px-6 py-2 rounded-lg"
         disabled={loading}
       >
+        {loading ? <LoaderCircle className="animate-spin" /> : <UploadCloud />}
         {loading ? 'Generating Quiz...' : 'Generate Quiz'}
       </button>
-    </div>
+    </motion.div>
   );
 };
 

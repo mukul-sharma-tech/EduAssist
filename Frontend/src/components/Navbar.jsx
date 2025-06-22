@@ -40,7 +40,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="text-2xl md:text-3xl font-extrabold tracking-tight">
           <span className="text-white">Edu</span>
-          <span className="text-yellow-300">Feedback</span>
+          <span className="text-yellow-300">Assist</span>
         </Link>
 
         {/* Mobile Menu Button */}

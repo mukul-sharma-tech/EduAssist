@@ -15,18 +15,6 @@ export function Avatar({ isSpeaking, animationName = 'Idle', ...props }) {
   const currentIntensity = useRef(0)
   const blinkTimer = useRef(Math.random() * 4 + 2)
 
-  // Setup clipping to hide lower body
-  // useEffect(() => {
-  //   const clipPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -0.4)
-  //   scene.traverse(child => {
-  //     if (child.isMesh) {
-  //       child.material.clippingPlanes = [clipPlane]
-  //       child.material.clipShadows = true
-  //       child.material.needsUpdate = true
-  //     }
-  //   })
-  // }, [scene])
-
   // Detect head mesh and morph targets
   useEffect(() => {
     scene.traverse(child => {
