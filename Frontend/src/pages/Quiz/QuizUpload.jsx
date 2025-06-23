@@ -62,6 +62,79 @@
 // export default QuizUpload;
 
 
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import axios from 'axios';
+// import { FileUp, LoaderCircle, UploadCloud } from 'lucide-react';
+// import { motion } from 'framer-motion';
+
+// const QuizUpload = () => {
+//   const [pdfFile, setPdfFile] = useState(null);
+//   const [manualText, setManualText] = useState('');
+//   const [loading, setLoading] = useState(false);
+//   const navigate = useNavigate();
+
+//   const handleSubmit = async () => {
+//     setLoading(true);
+//     try {
+//       let content = manualText;
+
+//       if (pdfFile) {
+//         const formData = new FormData();
+//         formData.append('pdf', pdfFile);
+//         const res = await axios.post('http://localhost:5000/extract-text-pdf', formData);
+//         content = res.data.text;
+//       }
+
+//       navigate('/quiz', { state: { content } });
+//     } catch (err) {
+//       console.error(err);
+//       alert("❌ Failed to process input");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <motion.div 
+//       initial={{ opacity: 0, y: 20 }} 
+//       animate={{ opacity: 1, y: 0 }} 
+//       className="min-h-screen bg-gradient-to-tr from-blue-800 via-purple-800 to-blue-900 text-white p-8 flex flex-col items-center justify-center"
+//     >
+//       <h1 className="text-4xl font-bold mb-6 flex items-center gap-2">
+//         <FileUp size={32} /> Quiz Generator
+//       </h1>
+
+//       <input
+//         type="file"
+//         accept="application/pdf"
+//         onChange={(e) => setPdfFile(e.target.files[0])}
+//         className="mb-4 file:bg-blue-600 file:hover:bg-blue-700 file:text-white file:rounded-lg file:px-4 file:py-2 text-sm"
+//       />
+
+//       <textarea
+//         rows="10"
+//         placeholder="📋 Or paste content here..."
+//         value={manualText}
+//         onChange={(e) => setManualText(e.target.value)}
+//         className="w-full max-w-2xl bg-white/10 text-white placeholder-gray-300 p-4 mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+//       />
+
+//       <button
+//         onClick={handleSubmit}
+//         className="flex items-center gap-2 bg-green-500 hover:bg-green-600 px-6 py-2 rounded-lg"
+//         disabled={loading}
+//       >
+//         {loading ? <LoaderCircle className="animate-spin" /> : <UploadCloud />}
+//         {loading ? 'Generating Quiz...' : 'Generate Quiz'}
+//       </button>
+//     </motion.div>
+//   );
+// };
+
+// export default QuizUpload;
+
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -99,17 +172,17 @@ const QuizUpload = () => {
     <motion.div 
       initial={{ opacity: 0, y: 20 }} 
       animate={{ opacity: 1, y: 0 }} 
-      className="min-h-screen bg-gradient-to-tr from-blue-800 via-purple-800 to-blue-900 text-white p-8 flex flex-col items-center justify-center"
+      className="min-h-screen bg-gradient-to-b from-blue-100 to-white text-gray-900 p-8 flex flex-col items-center justify-center"
     >
-      <h1 className="text-4xl font-bold mb-6 flex items-center gap-2">
-        <FileUp size={32} /> Quiz Generator
+      <h1 className="text-4xl font-bold mb-6 text-blue-700 flex items-center gap-2">
+        <FileUp size={32} /> <span className="text-blue-400">Quiz Generator</span>
       </h1>
 
       <input
         type="file"
         accept="application/pdf"
         onChange={(e) => setPdfFile(e.target.files[0])}
-        className="mb-4 file:bg-blue-600 file:hover:bg-blue-700 file:text-white file:rounded-lg file:px-4 file:py-2 text-sm"
+        className="mb-4 file:bg-blue-200 file:hover:bg-blue-300 file:text-blue-800 file:rounded-full text-sm"
       />
 
       <textarea
@@ -117,12 +190,12 @@ const QuizUpload = () => {
         placeholder="📋 Or paste content here..."
         value={manualText}
         onChange={(e) => setManualText(e.target.value)}
-        className="w-full max-w-2xl bg-white/10 text-white placeholder-gray-300 p-4 mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+        className="w-full max-w-2xl bg-white/70 text-gray-900 placeholder-gray-500 border border-blue-200 p-4 mb-4 rounded-xl focus:outline-blue-400"
       />
 
       <button
         onClick={handleSubmit}
-        className="flex items-center gap-2 bg-green-500 hover:bg-green-600 px-6 py-2 rounded-lg"
+        className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-2 rounded-xl"
         disabled={loading}
       >
         {loading ? <LoaderCircle className="animate-spin" /> : <UploadCloud />}
