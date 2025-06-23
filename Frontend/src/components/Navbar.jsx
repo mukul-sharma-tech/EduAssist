@@ -112,7 +112,7 @@ const Navbar = () => {
                     { name: "EduAI", path: "/EduAI" },
                     { name: "AnsCheck", path: "/ansCheck" },
                     { name: "QuizGenerate", path: "/quiz-generate" },
-                    { name: "AIFriend", path: "/friend" },
+                    // { name: "AIFriend", path: "/friend" },
                     { name: "Assignment", path: "/assignment" },
                     { name: "EasyLearn", path: "/choose-topic" },
                   ].map((item) => (
@@ -131,7 +131,7 @@ const Navbar = () => {
 
             <li>
               <Link
-                to="/MockInterview"
+                to="/oral-assess-choose-subject"
                 className={`block py-2 hover:text-yellow-300 transition ${isActive("/MockInterview") ? "text-yellow-300 font-semibold" : ""
                   }`}
               >
