@@ -482,8 +482,68 @@ class Video extends Component {
     return Object.assign(stream.getVideoTracks()[0], { enabled: false });
   };
 
-  handleVideo = () =>
-    this.setState({ video: !this.state.video }, () => this.getUserMedia());
+  handleVideo = () => {
+    this.setState({ video: !this.state.video }, () => {
+      if (!this.state.video) {
+        // Turning video OFF: remove all video tracks and update all connections
+        if (window.localStream) {
+          window.localStream.getVideoTracks().forEach((track) => track.stop());
+          // Remove video track from all peer connections
+          for (let id in connections) {
+            const sender = connections[id]
+              .getSenders()
+              .find((s) => s.track && s.track.kind === "video");
+            if (sender) sender.replaceTrack(null);
+            // Renegotiate
+            connections[id].createOffer().then((description) => {
+              connections[id]
+                .setLocalDescription(description)
+                .then(() => {
+                  socket.emit(
+                    "signal",
+                    id,
+                    JSON.stringify({ sdp: connections[id].localDescription })
+                  );
+                });
+            });
+          }
+        }
+      } else {
+        // Turning video ON: get user media and update all connections
+        navigator.mediaDevices
+          .getUserMedia({ video: true, audio: this.state.audio })
+          .then((stream) => {
+            if (window.localStream) {
+              window.localStream.getTracks().forEach((track) => track.stop());
+            }
+            window.localStream = stream;
+            if (this.localVideoref.current) {
+              this.localVideoref.current.srcObject = stream;
+            }
+            for (let id in connections) {
+              const sender = connections[id]
+                .getSenders()
+                .find((s) => s.track && s.track.kind === "video");
+              const videoTrack = stream.getVideoTracks()[0];
+              if (sender && videoTrack) sender.replaceTrack(videoTrack);
+              // Renegotiate
+              connections[id].createOffer().then((description) => {
+                connections[id]
+                  .setLocalDescription(description)
+                  .then(() => {
+                    socket.emit(
+                      "signal",
+                      id,
+                      JSON.stringify({ sdp: connections[id].localDescription })
+                    );
+                  });
+              });
+            }
+          })
+          .catch((e) => console.log(e));
+      }
+    });
+  };
   handleAudio = () =>
     this.setState({ audio: !this.state.audio }, () => this.getUserMedia());
   handleScreen = () =>
