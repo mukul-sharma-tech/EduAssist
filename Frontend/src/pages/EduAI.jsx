@@ -273,7 +273,7 @@ const EduAI = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5000/chat', {
+      const response = await axios.post('https://eduassist-nak8.onrender.com/chat', {
         message: input,
         context: [...formatContext(), { role: 'user', content: input }],
       });
