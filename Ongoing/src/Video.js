@@ -594,7 +594,10 @@ class Video extends Component {
             justifyContent: "center",
           }}
         >
-          <h1>Sorry, this works only with Google Chrome or Firefox</h1>
+          <h1>
+            Sorry, this app works only with Google Chrome, Mozilla Firefox,
+            Microsoft Edge, or Brave browsers.
+          </h1>
         </div>
       );
     }
