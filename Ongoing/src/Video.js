@@ -316,37 +316,19 @@ class Video extends Component {
   };
 
   changeCssVideos = (main) => {
-    let widthMain = main.offsetWidth;
-    let minWidth = "30%";
-    if ((widthMain * 30) / 100 < 300) {
-      minWidth = "300px";
-    }
-    let minHeight = "40%";
-
-    let height = String(100 / elms) + "%";
-    let width = "";
-    if (elms === 0 || elms === 1) {
-      width = "100%";
-      height = "100%";
-    } else if (elms === 2) {
-      width = "45%";
-      height = "100%";
-    } else if (elms === 3 || elms === 4) {
-      width = "35%";
-      height = "50%";
-    } else {
-      width = String(100 / elms) + "%";
-    }
-
+    // Remove dynamic resizing and enforce fixed aspect ratio
     let videos = main.querySelectorAll("video");
     for (let a = 0; a < videos.length; ++a) {
-      videos[a].style.minWidth = minWidth;
-      videos[a].style.minHeight = minHeight;
-      videos[a].style.setProperty("width", width);
-      videos[a].style.setProperty("height", height);
+      videos[a].style.width = "100%";
+      videos[a].style.height = "100%";
+      videos[a].style.objectFit = "cover";
     }
-
-    return { minWidth, minHeight, width, height };
+    return {
+      minWidth: "320px",
+      minHeight: "180px",
+      width: "100%",
+      height: "100%",
+    };
   };
 
   connectToSocketServer = () => {
@@ -507,7 +489,29 @@ class Video extends Component {
   handleScreen = () =>
     this.setState({ screen: !this.state.screen }, () => this.getDislayMedia());
   handlePin = (id) => {
-    this.setState((prev) => ({ pinnedId: prev.pinnedId === id ? null : id }));
+    this.setState(
+      (prev) => ({ pinnedId: prev.pinnedId === id ? null : id }),
+      () => {
+        // Always re-attach local stream to local video element
+        if (this.localVideoref.current && window.localStream) {
+          this.localVideoref.current.srcObject = window.localStream;
+        }
+        // Re-add local stream to all connections if available
+        if (window.localStream) {
+          for (let connId in connections) {
+            try {
+              const senders = connections[connId].getSenders();
+              const tracks = window.localStream.getTracks();
+              tracks.forEach((track) => {
+                if (!senders.find((s) => s.track === track)) {
+                  connections[connId].addTrack(track, window.localStream);
+                }
+              });
+            } catch (e) {}
+          }
+        }
+      }
+    );
   };
 
   handleEndCall = () => {
@@ -606,13 +610,14 @@ class Video extends Component {
       display: "inline-block",
       margin: "10px",
       width: "320px",
-      height: "240px",
+      height: "180px", // 16:9 aspect ratio
       background: "#111",
       borderStyle: "solid",
       borderColor: "#bdbdbd",
       borderRadius: "8px",
       overflow: "hidden",
       verticalAlign: "top",
+      aspectRatio: "16/9",
     };
     const nameLabelStyle = {
       position: "absolute",
@@ -890,7 +895,7 @@ class Video extends Component {
                         ...videoBoxStyle,
                         width: pinnedId === id ? "640px" : videoBoxStyle.width,
                         height:
-                          pinnedId === id ? "480px" : videoBoxStyle.height,
+                          pinnedId === id ? "360px" : videoBoxStyle.height,
                       }}
                     >
                       {/* Video or placeholder */}
@@ -915,6 +920,8 @@ class Video extends Component {
                             height: "100%",
                             objectFit: "cover",
                             background: "#111",
+                            borderRadius: "8px",
+                            display: "block",
                           }}
                         ></video>
                       ) : (
@@ -928,9 +935,18 @@ class Video extends Component {
                             justifyContent: "center",
                             color: "#888",
                             fontSize: "24px",
+                            flexDirection: "column",
+                            borderRadius: "8px",
                           }}
                         >
-                          Video Off
+                          <span style={{ fontSize: 48, marginBottom: 8 }}>
+                            📷
+                          </span>
+                          <span
+                            style={{ fontWeight: "bold", letterSpacing: 2 }}
+                          >
+                            NO VIDEO
+                          </span>
                         </div>
                       )}
                       <span style={nameLabelStyle}>{username}</span>
