@@ -101,6 +101,35 @@ Link: [https://www.canva.com/design/DAGrFExLf_k/NJzuujhyz7OfDLqhh5nWZA/edit?utm_
 
 ---
 
+## Code Structure 
+
+- *On Main Branch*
+  - Instant result and feedback.
+  - AI-generated quizzes from text or PDF input.
+  - Upload Q&A PDFs and get AI-evaluated responses with marks, suggestions, and feedback.
+  - Learn via 3D Models.
+  - Generate interactive 3D explainers using text or PDFs in English, Hindi, or Hinglish.
+  - Immersive, voice-guided models for better conceptual clarity.
+  - Take an oral assessment test of desired topics and subject with a 3d Teacher and get instant result and feedback with behaviour analysis.
+  - You can solve any questions or doubt with proper solution and explanation in assignment solve section.
+
+- *On Video Branch*
+  - Video Calling Feature with AI ML integrated
+  - Real-time student engagement tracking via facial recognition.
+  - Personalized feedback for students and insights dashboard for teachers.
+  - Speech-based topic detection during live classes.
+
+- *On Rishbah Branch*
+  - Student Workflow Tracker
+  - Add syllabus, deadlines, and study goals.
+  - Gemini AI generates personalized plans and suggestions.
+  - Real-time progress dashboard.
+  - Proper Data Modelling of whole project.
+  - Authentication using CLERK.
+
+---
+
+
 ## 🤝 Contributing
 
 Feel free to open issues or pull requests. Let's improve education with AI, together.
