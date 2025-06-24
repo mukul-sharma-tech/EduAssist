@@ -774,7 +774,7 @@ export default function InterviewPlatform() {
             </div>
 
             {/* Controls */}
-            <div className="flex gap-3">
+            {/* <div className="flex gap-3">
               <motion.button
                 onClick={toggleMic}
                 whileTap={{ scale: 0.95 }}
@@ -800,7 +800,7 @@ export default function InterviewPlatform() {
                 </svg>
                 {videoOn ? 'Stop Video' : 'Start Video'}
               </motion.button>
-            </div>
+            </div> */}
           </div>
 
           {/* Answer Section */}

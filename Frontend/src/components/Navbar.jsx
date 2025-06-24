@@ -57,8 +57,8 @@ const Navbar = () => {
         {/* Nav Links */}
         <div
           className={`${menuOpen
-              ? "absolute left-0 right-0 top-full bg-gradient-to-b from-purple-900 to-indigo-900 shadow-xl px-4 py-3"
-              : "hidden"
+            ? "absolute left-0 right-0 top-full bg-gradient-to-b from-purple-900 to-indigo-900 shadow-xl px-4 py-3"
+            : "hidden"
             } md:block md:relative md:bg-transparent md:shadow-none md:px-0 md:py-0`}
         >
           <ul
@@ -83,15 +83,30 @@ const Navbar = () => {
                 About
               </Link>
             </li>
+
             <li>
-              <Link
-                to="/contact"
-                className={`block py-2 hover:text-yellow-300 transition ${isActive("/contact") ? "text-yellow-300 font-semibold" : ""
-                  }`}
+              <a
+                href="https://eduassist-video-platform.onrender.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block py-2 hover:text-yellow-300 transition ${isActive("/contact") ? "text-yellow-300 font-semibold" : ""}`}
               >
-                Contact
-              </Link>
+                Video Calling
+              </a>
             </li>
+
+            <li>
+              <a
+                href="https://www.abc.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block py-2 hover:text-yellow-300 transition ${isActive("/contact") ? "text-yellow-300 font-semibold" : ""}`}
+              >
+                WorkFlow Tracker
+              </a>
+            </li>
+
+
 
             {/* Dropdown */}
             <li className="relative" ref={dropdownRef}>
@@ -138,20 +153,20 @@ const Navbar = () => {
                 AI Teacher Convo
               </Link>
             </li>
-            <li className="pt-2 md:pt-0 border-t border-purple-700 md:border-t-0">
+            {/* <li className="pt-2 md:pt-0 border-t border-purple-700 md:border-t-0">
               <Link
                 to="/login"
                 className="block px-4 py-2 border border-white rounded hover:bg-white hover:text-purple-900 transition text-center"
               >
                 Teacher Login
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 to="/register"
                 className="block px-4 py-2 bg-yellow-300 text-purple-900 font-semibold rounded hover:bg-yellow-400 transition text-center mt-2 md:mt-0"
               >
-                Register School
+                Register
               </Link>
             </li>
           </ul>
