@@ -568,19 +568,18 @@ class Video extends Component {
   connect = () =>
     this.setState({ askForUsername: false }, () => this.getMedia());
 
-  isChrome = function () {
+  isSupportedBrowser = function () {
     let userAgent = (navigator && (navigator.userAgent || "")).toLowerCase();
     let vendor = (navigator && (navigator.vendor || "")).toLowerCase();
-    let matchChrome = /google inc/.test(vendor)
+    let isChrome = /google inc/.test(vendor)
       ? userAgent.match(/(?:chrome|crios)\/(\d+)/)
       : null;
-    // let matchFirefox = userAgent.match(/(?:firefox|fxios)\/(\d+)/)
-    // return matchChrome !== null || matchFirefox !== null
-    return matchChrome !== null;
+    let isFirefox = userAgent.match(/(?:firefox|fxios)\/(\d+)/);
+    return isChrome !== null || isFirefox !== null;
   };
 
   render() {
-    if (this.isChrome() === false) {
+    if (!this.isSupportedBrowser()) {
       return (
         <div
           style={{
@@ -595,7 +594,7 @@ class Video extends Component {
             justifyContent: "center",
           }}
         >
-          <h1>Sorry, this works only with Google Chrome</h1>
+          <h1>Sorry, this works only with Google Chrome or Firefox</h1>
         </div>
       );
     }
