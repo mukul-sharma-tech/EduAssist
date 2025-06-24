@@ -27,8 +27,12 @@ const server_url =
 var connections = {};
 const peerConnectionConfig = {
   iceServers: [
-    // { 'urls': 'stun:stun.services.mozilla.com' },
     { urls: "stun:stun.l.google.com:19302" },
+    {
+      urls: "turn:relay.metered.ca:80",
+      username: "openai",
+      credential: "openai",
+    },
   ],
 };
 var socket = null;
