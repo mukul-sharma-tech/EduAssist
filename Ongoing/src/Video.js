@@ -2,18 +2,19 @@ import React, { Component } from "react";
 import io from "socket.io-client";
 import faker from "faker";
 
-import { IconButton, Badge, Input, Button } from "@material-ui/core";
-import VideocamIcon from "@material-ui/icons/Videocam";
-import VideocamOffIcon from "@material-ui/icons/VideocamOff";
-import MicIcon from "@material-ui/icons/Mic";
-import MicOffIcon from "@material-ui/icons/MicOff";
-import ScreenShareIcon from "@material-ui/icons/ScreenShare";
-import StopScreenShareIcon from "@material-ui/icons/StopScreenShare";
-import CallEndIcon from "@material-ui/icons/CallEnd";
-import ChatIcon from "@material-ui/icons/Chat";
+import { IconButton, Badge, Input, Button } from "@mui/material";
+import VideocamIcon from "@mui/icons-material/Videocam";
+import VideocamOffIcon from "@mui/icons-material/VideocamOff";
+import MicIcon from "@mui/icons-material/Mic";
+import MicOffIcon from "@mui/icons-material/MicOff";
+import ScreenShareIcon from "@mui/icons-material/ScreenShare";
+import StopScreenShareIcon from "@mui/icons-material/StopScreenShare";
+import CallEndIcon from "@mui/icons-material/CallEnd";
+import ChatIcon from "@mui/icons-material/Chat";
+import PushPinIcon from "@mui/icons-material/PushPin";
 
 import { message } from "antd";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 
 import { Row } from "reactstrap";
 import Modal from "react-bootstrap/Modal";
@@ -58,6 +59,7 @@ class Video extends Component {
       username: faker.internet.userName(),
       usernames: {}, // socketId: username
       streams: {}, // socketId: MediaStream
+      pinnedId: null, // for pinning a video
     };
     this.remoteVideoRefs = {}; // socketId: ref
     connections = {};
@@ -374,7 +376,21 @@ class Video extends Component {
         if (main) this.changeCssVideos(main);
       });
 
+      // --- USERNAME SYNC LOGIC ---
+      // When a user joins, request everyone's username
       socket.on("user-joined", (id, clients) => {
+        // Send your username to everyone
+        clients.forEach((clientId) => {
+          if (clientId !== socketId) {
+            socket.emit("username", this.state.username, socketId, clientId);
+          }
+        });
+        // Request all usernames from everyone
+        clients.forEach((clientId) => {
+          if (clientId !== socketId) {
+            socket.emit("request-username", clientId);
+          }
+        });
         // Send your username to the new user
         if (id !== socketId) {
           socket.emit("username", this.state.username);
@@ -396,7 +412,6 @@ class Video extends Component {
 
           // Wait for their video stream
           connections[socketListId].onaddstream = (event) => {
-            // Store stream in state
             this.setState(
               (prev) => ({
                 streams: { ...prev.streams, [socketListId]: event.stream },
@@ -405,6 +420,10 @@ class Video extends Component {
                 elms = Object.keys(this.state.streams).length + 1;
                 let main = document.getElementById("main");
                 if (main) this.changeCssVideos(main);
+                // If username is missing, request it
+                if (!this.state.usernames[socketListId]) {
+                  socket.emit("request-username", socketListId);
+                }
               }
             );
           };
@@ -444,13 +463,22 @@ class Video extends Component {
         }
       });
 
-      socket.on("username", (username, id) => {
-        this.setState((prev) => ({
-          usernames: { ...prev.usernames, [id]: username },
-        }));
+      // Respond to username requests
+      socket.on("request-username", (fromId) => {
+        socket.emit("username", this.state.username, socketId, fromId);
       });
-      // Send your username to everyone after connecting
-      socket.emit("username", this.state.username, socketId);
+
+      // Receive username from others
+      socket.on("username", (username, fromId, toId) => {
+        if (!toId || toId === socketId) {
+          this.setState((prev) => ({
+            usernames: { ...prev.usernames, [fromId]: username },
+          }));
+        }
+      });
+
+      // Send your username to yourself (so you always have your own mapping)
+      socket.emit("username", this.state.username, socketId, socketId);
     });
   };
 
@@ -478,6 +506,9 @@ class Video extends Component {
     this.setState({ audio: !this.state.audio }, () => this.getUserMedia());
   handleScreen = () =>
     this.setState({ screen: !this.state.screen }, () => this.getDislayMedia());
+  handlePin = (id) => {
+    this.setState((prev) => ({ pinnedId: prev.pinnedId === id ? null : id }));
+  };
 
   handleEndCall = () => {
     try {
@@ -599,6 +630,8 @@ class Video extends Component {
       whiteSpace: "nowrap",
       textOverflow: "ellipsis",
     };
+    // If a video is pinned, show only that video (and local if pinned is local)
+    const { pinnedId } = this.state;
     return (
       <div>
         {this.state.askForUsername === true ? (
@@ -785,33 +818,76 @@ class Video extends Component {
               <Row
                 id="main"
                 className="flex-container"
-                style={{ margin: 0, padding: 0 }}
+                style={{
+                  margin: 0,
+                  padding: 0,
+                  justifyContent: pinnedId ? "center" : undefined,
+                }}
               >
                 {/* Local video with username */}
-                <div data-wrapper="local" style={videoBoxStyle}>
-                  <video
-                    id="my-video"
-                    ref={this.localVideoref}
-                    autoPlay
-                    muted
+                {(!pinnedId || pinnedId === "local") && (
+                  <div
+                    data-wrapper="local"
                     style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      background: "#111",
+                      ...videoBoxStyle,
+                      width:
+                        pinnedId === "local" ? "640px" : videoBoxStyle.width,
+                      height:
+                        pinnedId === "local" ? "480px" : videoBoxStyle.height,
                     }}
-                  ></video>
-                  <span style={nameLabelStyle}>
-                    {this.state.username || "Me"}
-                  </span>
-                </div>
+                  >
+                    <video
+                      id="my-video"
+                      ref={this.localVideoref}
+                      autoPlay
+                      muted
+                      controls={false}
+                      disablePictureInPicture
+                      controlsList="nodownload nofullscreen noremoteplayback"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        background: "#111",
+                      }}
+                    ></video>
+                    <span style={nameLabelStyle}>
+                      {this.state.username || "Me"}
+                    </span>
+                    <IconButton
+                      style={{
+                        position: "absolute",
+                        top: 8,
+                        right: 8,
+                        zIndex: 3,
+                        background: "rgba(0,0,0,0.3)",
+                      }}
+                      onClick={() => this.handlePin("local")}
+                      size="small"
+                    >
+                      <PushPinIcon
+                        color={pinnedId === "local" ? "primary" : "inherit"}
+                      />
+                    </IconButton>
+                  </div>
+                )}
                 {/* Remote videos with usernames */}
                 {Object.entries(this.state.streams).map(([id, stream]) => {
                   if (!this.remoteVideoRefs[id])
                     this.remoteVideoRefs[id] = React.createRef();
                   const username = this.state.usernames[id] || "User";
+                  if (pinnedId && pinnedId !== id) return null;
                   return (
-                    <div key={id} data-wrapper={id} style={videoBoxStyle}>
+                    <div
+                      key={id}
+                      data-wrapper={id}
+                      style={{
+                        ...videoBoxStyle,
+                        width: pinnedId === id ? "640px" : videoBoxStyle.width,
+                        height:
+                          pinnedId === id ? "480px" : videoBoxStyle.height,
+                      }}
+                    >
                       {/* Video or placeholder */}
                       {stream &&
                       stream.getVideoTracks().length > 0 &&
@@ -826,6 +902,9 @@ class Video extends Component {
                           }}
                           autoPlay
                           playsInline
+                          controls={false}
+                          disablePictureInPicture
+                          controlsList="nodownload nofullscreen noremoteplayback"
                           style={{
                             width: "100%",
                             height: "100%",
@@ -850,6 +929,21 @@ class Video extends Component {
                         </div>
                       )}
                       <span style={nameLabelStyle}>{username}</span>
+                      <IconButton
+                        style={{
+                          position: "absolute",
+                          top: 8,
+                          right: 8,
+                          zIndex: 3,
+                          background: "rgba(0,0,0,0.3)",
+                        }}
+                        onClick={() => this.handlePin(id)}
+                        size="small"
+                      >
+                        <PushPinIcon
+                          color={pinnedId === id ? "primary" : "inherit"}
+                        />
+                      </IconButton>
                     </div>
                   );
                 })}
