@@ -22,9 +22,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./Video.css";
 
 const server_url =
-  process.env.NODE_ENV === "production"
-    ? "https://video.sebastienbiollo.com"
-    : "http://localhost:4001";
+  process.env.NODE_ENV === "production" ? "" : "http://localhost:4001";
 
 var connections = {};
 const peerConnectionConfig = {
@@ -496,15 +494,13 @@ class Video extends Component {
             if (sender) sender.replaceTrack(null);
             // Renegotiate
             connections[id].createOffer().then((description) => {
-              connections[id]
-                .setLocalDescription(description)
-                .then(() => {
-                  socket.emit(
-                    "signal",
-                    id,
-                    JSON.stringify({ sdp: connections[id].localDescription })
-                  );
-                });
+              connections[id].setLocalDescription(description).then(() => {
+                socket.emit(
+                  "signal",
+                  id,
+                  JSON.stringify({ sdp: connections[id].localDescription })
+                );
+              });
             });
           }
         }
@@ -528,15 +524,13 @@ class Video extends Component {
               if (sender && videoTrack) sender.replaceTrack(videoTrack);
               // Renegotiate
               connections[id].createOffer().then((description) => {
-                connections[id]
-                  .setLocalDescription(description)
-                  .then(() => {
-                    socket.emit(
-                      "signal",
-                      id,
-                      JSON.stringify({ sdp: connections[id].localDescription })
-                    );
-                  });
+                connections[id].setLocalDescription(description).then(() => {
+                  socket.emit(
+                    "signal",
+                    id,
+                    JSON.stringify({ sdp: connections[id].localDescription })
+                  );
+                });
               });
             }
           })
