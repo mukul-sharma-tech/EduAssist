@@ -860,13 +860,16 @@ class Video extends Component {
                         top: 8,
                         right: 8,
                         zIndex: 3,
-                        background: "rgba(0,0,0,0.3)",
+                        background: "#fff",
+                        border: "1px solid #1976d2",
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+                        padding: 4,
                       }}
                       onClick={() => this.handlePin("local")}
                       size="small"
                     >
                       <PushPinIcon
-                        color={pinnedId === "local" ? "primary" : "inherit"}
+                        color={pinnedId === "local" ? "primary" : "action"}
                       />
                     </IconButton>
                   </div>
@@ -935,13 +938,16 @@ class Video extends Component {
                           top: 8,
                           right: 8,
                           zIndex: 3,
-                          background: "rgba(0,0,0,0.3)",
+                          background: "#fff",
+                          border: "1px solid #1976d2",
+                          boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+                          padding: 4,
                         }}
                         onClick={() => this.handlePin(id)}
                         size="small"
                       >
                         <PushPinIcon
-                          color={pinnedId === id ? "primary" : "inherit"}
+                          color={pinnedId === id ? "primary" : "action"}
                         />
                       </IconButton>
                     </div>
