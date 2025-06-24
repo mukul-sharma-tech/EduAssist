@@ -16,6 +16,7 @@ import QuizPage from './pages/Quiz/QuizPage';
 import ChooseTopic from './pages/explain/ChooseTopic'; // Import the ChooseTopic page
 import StoryNarrator from './pages/explain/StoryNarrator';
 import Subjects from './pages/tracker/Subject';
+import Generate from './components/Generate';
 
 const App = () => {
   return (
@@ -35,8 +36,7 @@ const App = () => {
         <Route path="/choose-topic" element={<ChooseTopic/>} />
         <Route path="/story" element={<StoryNarrator/>} />
         <Route path="/tracker/subject" element={<Subjects/>} />
-
-
+        <Route path="/tracker/generate" element={<Generate/>} />
       </Routes>
       <Footer />
     </Router>

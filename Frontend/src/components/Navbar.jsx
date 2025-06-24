@@ -106,6 +106,8 @@ const Navbar = () => {
                     { name: "AIFriend", path: "/friend" },
                     { name: "Assignment", path: "/assignment" },
                     { name: "EasyLearn", path: "/choose-topic" },
+                    { name: "Tracker", path: "/tracker/subject" },
+                    { name: "Study Plan", path: "/tracker/generate" },
                   ].map((item) => (
                     <li key={item.path}>
                       <Link

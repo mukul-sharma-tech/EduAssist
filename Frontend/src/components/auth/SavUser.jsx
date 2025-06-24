@@ -10,7 +10,7 @@ const RegisterAsStudent = () => {
         const token = await getToken();
 
         if (!token) {
-          console.warn("❌ No token found. User might be signed out.");
+          console.warn(" No token found. User might be signed out.");
           return;
         }
 

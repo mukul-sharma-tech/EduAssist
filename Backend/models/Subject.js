@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const subjectSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  students: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  students: [{ type: String }],
   sessions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Session' }]
 });
 

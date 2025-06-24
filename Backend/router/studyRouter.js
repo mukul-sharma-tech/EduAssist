@@ -6,10 +6,10 @@ import { createGoal, createSession, createSubject, deleteGoal, deleteSession, de
 const studyRouter = express.Router();
 
 // Subjects
-studyRouter.post("/subjects", requireAuth(), createSubject);
-studyRouter.get("/subjects", requireAuth(), getSubjects);
-studyRouter.put("/subjects/:id", requireAuth(), updateSubject);
-studyRouter.delete("/subjects/:id", requireAuth(), deleteSubject);
+studyRouter.post("/", requireAuth(), createSubject);
+studyRouter.get("/", requireAuth(), getSubjects);
+studyRouter.put("/:id", requireAuth(), updateSubject);
+studyRouter.delete("/:id", requireAuth(), deleteSubject);
 
 // Sessions
 studyRouter.post("/sessions", requireAuth(), createSession);

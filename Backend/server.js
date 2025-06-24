@@ -16,7 +16,11 @@ dotenv.config();
 const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use(express.json());
 
 app.post('/extract-pdf', upload.single('pdf'), async (req, res) => {
@@ -49,6 +53,30 @@ app.post('/extract-text-pdf', upload.single('pdf'), async (req, res) => {
     res.status(500).json({ error: 'Failed to parse PDF.' });
   }
 });
+app.post("/generate-plan", async (req, res) => {
+  const { subject, syllabus, deadline, startDate } = req.body;
+
+  const prompt = `
+You are a helpful AI that creates daily study plans.
+The subject is: ${subject}
+The syllabus includes: ${syllabus}
+The study plan should start from: ${startDate}
+The exam deadline is: ${deadline}
+
+Generate a day-wise study schedule between ${startDate} and ${deadline}, dividing the syllabus smartly. Mention each day with its date and assigned topics. Be specific and concise.
+  `;
+
+  try {
+    const result = await model.generateContent(prompt);
+    const output = result.response.text();
+
+    res.json({ plan: output });
+  } catch (err) {
+    console.error("Error generating study plan:", err);
+    res.status(500).json({ error: "Failed to generate study plan" });
+  }
+});
+
 
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -96,7 +124,7 @@ console.log("CLERK_SECRET_KEY:", process.env.CLERK_SECRET_KEY);
 
 
 app.use('/api/users',userRouter);
-app.use('/api/users/subject',studyRouter);
+app.use('/api/subjects',studyRouter);
 
 // database connection by rishabh
 connectDB()
