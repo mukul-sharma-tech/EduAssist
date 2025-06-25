@@ -41,7 +41,6 @@
 //         <Route path="/result" element={<Result/>} />
 //         <Route path="/oral-assess-choose-subject" element={<ChooseSubject />} />
 
-
 //       </Routes>
 //       <Footer />
 //     </Router>
@@ -50,34 +49,38 @@
 
 // export default App;
 
-
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import About from './pages/About';
-import EduAI from './pages/EduAI';
-import './App.css';
-import HomePage from './pages/HomePage';
-import AssignmentUpload from './pages/Assignment/AssignmentUpload';
-import AssignmentSolver from './pages/Assignment/AssignmentSolver';
-import SolutionUpload from './pages/AnswerChecker/SolutionUpload';
-import AnswerEvaluator from './pages/AnswerChecker/AnswerEvaluator';
-import QuizUpload from './pages/Quiz/QuizUpload';
-import QuizResult from './pages/Quiz/QuizResult';
-import QuizPage from './pages/Quiz/QuizPage';
-import ChooseTopic from './pages/explain/ChooseTopic';
-import StoryNarrator from './pages/explain/StoryNarrator';
-import ChooseSubject from './pages/oralTest/ChooseSubject';
-import InterviewPlatform from './pages/oralTest/InterviewPlatform';
-import Result from './pages/oralTest/Result';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import About from "./pages/About";
+import EduAI from "./pages/EduAI";
+import "./App.css";
+import HomePage from "./pages/HomePage";
+import AssignmentUpload from "./pages/Assignment/AssignmentUpload";
+import AssignmentSolver from "./pages/Assignment/AssignmentSolver";
+import SolutionUpload from "./pages/AnswerChecker/SolutionUpload";
+import AnswerEvaluator from "./pages/AnswerChecker/AnswerEvaluator";
+import QuizUpload from "./pages/Quiz/QuizUpload";
+import QuizResult from "./pages/Quiz/QuizResult";
+import QuizPage from "./pages/Quiz/QuizPage";
+import ChooseTopic from "./pages/explain/ChooseTopic";
+import StoryNarrator from "./pages/explain/StoryNarrator";
+import ChooseSubject from "./pages/oralTest/ChooseSubject";
+import InterviewPlatform from "./pages/oralTest/InterviewPlatform";
+import Result from "./pages/oralTest/Result";
 
 const AppLayout = () => {
   const location = useLocation();
   const hideNavAndFooter = [
-    '/oral-test',
-    '/result',
-    '/oral-assess-choose-subject',
+    "/oral-test",
+    "/result",
+    "/oral-assess-choose-subject",
   ].includes(location.pathname);
 
   return (
