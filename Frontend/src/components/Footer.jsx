@@ -14,7 +14,7 @@ const Footer = () => {
         {/* Brand Info */}
         <div>
           <h5 className="text-xl font-bold mb-2">
-            Edu<span className="text-yellow-300">Feedback</span>
+            Edu<span className="text-yellow-300">Assist</span>
           </h5>
           <p className="text-sm">
             AI-powered teacher assistant that automates grading and provides

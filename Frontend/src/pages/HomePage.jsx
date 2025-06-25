@@ -204,7 +204,7 @@ const HomePage = () => {
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2">
               <img
-                src="https://www.un.org/sustainabledevelopment/wp-content/uploads/2019/07/E_SDG-goals_icons-individual-rgb-04.png"
+                src="/sdg-4-1024x1024.png"
                 alt="SDG 4: Quality Education"
                 className="w-full max-w-md mx-auto rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
               />
