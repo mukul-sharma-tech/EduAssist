@@ -1,31 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Bot, MessageCircle, TrendingUp, Check, Quote } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Bot,
+  MessageCircle,
+  TrendingUp,
+  Check,
+  Quote,
+} from "lucide-react";
 
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const carouselItems = [
     {
-      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image:
+        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Empowering Educators with AI",
-      subtitle: "Reduce teacher workload while providing personalized feedback to every student",
+      subtitle:
+        "Reduce teacher workload while providing personalized feedback to every student",
       buttonText: "Get Started",
-      buttonLink: "/register"
+      buttonLink: "/register",
     },
     {
-      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image:
+        "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Automated Assignment Grading",
-      subtitle: "Save hours of grading time with our AI-powered assessment system",
+      subtitle:
+        "Save hours of grading time with our AI-powered assessment system",
       buttonText: "Learn More",
-      buttonLink: "/grading"
+      buttonLink: "/grading",
     },
     {
-      image: "https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image:
+        "https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Personalized Student Feedback",
-      subtitle: "AI-generated, individualized feedback to help each student improve",
+      subtitle:
+        "AI-generated, individualized feedback to help each student improve",
       buttonText: "See Examples",
-      buttonLink: "/feedback"
-    }
+      buttonLink: "/feedback",
+    },
   ];
 
   // Auto-advance carousel every 5 seconds
@@ -40,11 +54,15 @@ const HomePage = () => {
   }, [carouselItems.length]);
 
   const nextSlide = () => {
-    setCurrentSlide(currentSlide === carouselItems.length - 1 ? 0 : currentSlide + 1);
+    setCurrentSlide(
+      currentSlide === carouselItems.length - 1 ? 0 : currentSlide + 1
+    );
   };
 
   const prevSlide = () => {
-    setCurrentSlide(currentSlide === 0 ? carouselItems.length - 1 : currentSlide - 1);
+    setCurrentSlide(
+      currentSlide === 0 ? carouselItems.length - 1 : currentSlide - 1
+    );
   };
 
   const goToSlide = (index) => {
@@ -59,8 +77,9 @@ const HomePage = () => {
           {carouselItems.map((item, index) => (
             <div
               key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'
-                }`}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                index === currentSlide ? "opacity-100" : "opacity-0"
+              }`}
             >
               <img
                 className="w-full h-full object-cover"
@@ -104,10 +123,11 @@ const HomePage = () => {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
-                    ? 'bg-white scale-125'
-                    : 'bg-white bg-opacity-50 hover:bg-opacity-75'
-                  }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentSlide
+                    ? "bg-white scale-125"
+                    : "bg-white bg-opacity-50 hover:bg-opacity-75"
+                }`}
               />
             ))}
           </div>
@@ -118,9 +138,12 @@ const HomePage = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">How EduFeedback Helps</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              How EduTech Helps
+            </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Our AI-powered platform transforms education by supporting overworked teachers
+              Our AI-powered platform transforms education by supporting
+              overworked teachers
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -130,9 +153,12 @@ const HomePage = () => {
                 <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Bot className="text-white" size={32} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Automated Grading</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Automated Grading
+                </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  AI that grades assignments, tests, and essays with human-level accuracy, saving teachers countless hours.
+                  AI that grades assignments, tests, and essays with human-level
+                  accuracy, saving teachers countless hours.
                 </p>
               </div>
             </div>
@@ -143,9 +169,12 @@ const HomePage = () => {
                 <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-700 rounded-full flex items-center justify-center mx-auto mb-6">
                   <MessageCircle className="text-white" size={32} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Personalized Feedback</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Personalized Feedback
+                </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Tailored feedback for each student's work, highlighting strengths and areas for improvement.
+                  Tailored feedback for each student's work, highlighting
+                  strengths and areas for improvement.
                 </p>
               </div>
             </div>
@@ -156,9 +185,12 @@ const HomePage = () => {
                 <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-full flex items-center justify-center mx-auto mb-6">
                   <TrendingUp className="text-white" size={32} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Performance Analytics</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Performance Analytics
+                </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Detailed insights into class and individual student performance to guide instruction.
+                  Detailed insights into class and individual student
+                  performance to guide instruction.
                 </p>
               </div>
             </div>
@@ -178,19 +210,25 @@ const HomePage = () => {
               />
             </div>
             <div className="lg:w-1/2">
-              <h2 className="text-4xl font-bold mb-8">Supporting UN Sustainable Development Goal 4</h2>
+              <h2 className="text-4xl font-bold mb-8">
+                Supporting UN Sustainable Development Goal 4
+              </h2>
               <p className="text-xl mb-10 leading-relaxed">
-                EduFeedback aligns with SDG 4: Quality Education by helping ensure inclusive and equitable quality education through:
+                EduTech aligns with SDG 4: Quality Education by helping ensure
+                inclusive and equitable quality education through:
               </p>
               <div className="space-y-4 mb-10">
                 {[
                   "Reducing teacher workload in under-resourced schools",
                   "Providing personalized learning experiences for all students",
                   "Enabling teachers to focus more on teaching and mentoring",
-                  "Making quality feedback accessible regardless of class size"
+                  "Making quality feedback accessible regardless of class size",
                 ].map((item, index) => (
                   <div key={index} className="flex items-start">
-                    <Check className="mt-1 mr-4 flex-shrink-0 text-green-400" size={20} />
+                    <Check
+                      className="mt-1 mr-4 flex-shrink-0 text-green-400"
+                      size={20}
+                    />
                     <span className="text-lg">{item}</span>
                   </div>
                 ))}
@@ -210,31 +248,41 @@ const HomePage = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">What Educators Say</h2>
-            <p className="text-xl text-gray-600">Trusted by teachers and schools worldwide</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              What Educators Say (placeholder)
+            </h2>
+            <p className="text-xl text-gray-600">
+              Trusted by teachers and schools worldwide
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                quote: "EduFeedback has cut my grading time by 70%, allowing me to focus on creating better lessons and giving more one-on-one attention to students who need it most.",
+                quote:
+                  "EduTech has cut my grading time by 70%, allowing me to focus on creating better lessons and giving more one-on-one attention to students who need it most.",
                 name: "Sarah Johnson",
                 role: "High School English Teacher",
-                image: "https://randomuser.me/api/portraits/women/45.jpg"
+                image: "https://randomuser.me/api/portraits/women/45.jpg",
               },
               {
-                quote: "The personalized feedback our students receive has dramatically improved their performance and engagement. It's like having a teaching assistant for every student.",
+                quote:
+                  "The personalized feedback our students receive has dramatically improved their performance and engagement. It's like having a teaching assistant for every student.",
                 name: "Michael Chen",
                 role: "School Principal",
-                image: "https://randomuser.me/api/portraits/men/32.jpg"
+                image: "https://randomuser.me/api/portraits/men/32.jpg",
               },
               {
-                quote: "In our rural school with limited resources, EduFeedback has been transformative. Our teachers are less stressed and our students are performing better than ever.",
+                quote:
+                  "In our rural school with limited resources, EduTech has been transformative. Our teachers are less stressed and our students are performing better than ever.",
                 name: "Amina Diallo",
                 role: "School Administrator",
-                image: "https://randomuser.me/api/portraits/women/68.jpg"
-              }
+                image: "https://randomuser.me/api/portraits/women/68.jpg",
+              },
             ].map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden h-full transform hover:scale-105 transition-all duration-300">
+              <div
+                key={index}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden h-full transform hover:scale-105 transition-all duration-300"
+              >
                 <div className="p-8">
                   <div className="mb-6 text-blue-500">
                     <Quote size={32} />
@@ -249,7 +297,9 @@ const HomePage = () => {
                       alt={testimonial.name}
                     />
                     <div>
-                      <h4 className="font-bold text-gray-900 text-lg">{testimonial.name}</h4>
+                      <h4 className="font-bold text-gray-900 text-lg">
+                        {testimonial.name}
+                      </h4>
                       <p className="text-gray-500">{testimonial.role}</p>
                     </div>
                   </div>
@@ -263,9 +313,12 @@ const HomePage = () => {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-gray-900 to-black text-white">
         <div className="container mx-auto px-4 text-center max-w-4xl">
-          <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Classroom?</h2>
+          <h2 className="text-4xl font-bold mb-6">
+            Ready to Transform Your Classroom?
+          </h2>
           <p className="text-xl mb-10 leading-relaxed">
-            Join thousands of educators who are saving time and improving student outcomes with EduFeedback.
+            Join thousands of educators who are saving time and improving
+            student outcomes with EduTech.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <a
@@ -285,7 +338,8 @@ const HomePage = () => {
       </section>
 
       <style jsx>{`
-              html, body {
+        html,
+        body {
           height: 100%;
           margin: 0;
           padding: 0;
@@ -301,16 +355,16 @@ const HomePage = () => {
             transform: translateY(0);
           }
         }
-        
+
         .animate-fade-in-up {
           animation: fade-in-up 0.8s ease-out forwards;
         }
-        
+
         .animation-delay-300 {
           animation-delay: 0.3s;
           opacity: 0;
         }
-        
+
         .animation-delay-600 {
           animation-delay: 0.6s;
           opacity: 0;
