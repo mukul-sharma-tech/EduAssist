@@ -15,7 +15,9 @@ const About = () => {
       {/* Hero Section */}
       <section className="hero-section py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">About EduTech</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            About EduAssist
+          </h1>
           <p className="text-xl md:text-2xl">
             Revolutionizing education through AI-powered teacher support
           </p>
@@ -33,7 +35,7 @@ const About = () => {
                 classrooms.
               </p>
               <p className="mb-4">
-                EduTech was founded by 4 passionate college students who
+                EduAssist was founded by 4 passionate college students who
                 recognized the immense pressure teachers face in today's online
                 educational landscape. With the shift to online learning,
                 teachers found themselves overwhelmed with grading assignments
@@ -184,7 +186,7 @@ const About = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-3">Our AI-Powered Solution</h2>
             <p className="text-xl">
-              How EduTech transforms the teaching experience
+              How EduAssist transforms the teaching experience
             </p>
           </div>
 
@@ -385,7 +387,7 @@ const About = () => {
                 Our Commitment to SDG 4
               </h2>
               <p className="mb-6">
-                EduTech is proud to align with United Nations Sustainable
+                EduAssist is proud to align with United Nations Sustainable
                 Development Goal 4: Quality Education. We believe that by
                 supporting teachers and improving feedback quality, we can help:
               </p>
@@ -443,7 +445,7 @@ const About = () => {
             Ready to Join the Education Revolution?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Discover how EduTech can transform your school or classroom.
+            Discover how EduAssist can transform your school or classroom.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
