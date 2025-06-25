@@ -306,57 +306,49 @@ const About = () => {
             {/* Team Member 1 */}
             <div className="bg-white rounded-xl shadow-md overflow-hidden p-6 text-center">
               <img
-                src="https://randomuser.me/api/portraits/women/43.jpg"
+                src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png"
                 alt="Team member"
                 className="w-32 h-32 rounded-full mx-auto mb-4"
               />
-              <h5 className="text-xl font-bold mb-1">Dr. Sarah Chen</h5>
-              <p className="text-gray-500 mb-3">Co-Founder & CEO</p>
-              <p className="text-gray-600">
-                Former high school teacher with 12 years classroom experience
-              </p>
+              <h5 className="text-xl font-bold mb-1">Mukul Sharma</h5>
+              <p className="text-gray-500 mb-3">Team Leader</p>
+              <p className="text-gray-600"></p>
             </div>
 
             {/* Team Member 2 */}
             <div className="bg-white rounded-xl shadow-md overflow-hidden p-6 text-center">
               <img
-                src="https://randomuser.me/api/portraits/men/32.jpg"
+                src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png"
                 alt="Team member"
                 className="w-32 h-32 rounded-full mx-auto mb-4"
               />
-              <h5 className="text-xl font-bold mb-1">James Rodriguez</h5>
-              <p className="text-gray-500 mb-3">CTO</p>
-              <p className="text-gray-600">
-                AI specialist with focus on natural language processing
-              </p>
+              <h5 className="text-xl font-bold mb-1">Anagh Miglani</h5>
+              <p className="text-gray-500 mb-3">Team Member</p>
+              <p className="text-gray-600"></p>
             </div>
 
             {/* Team Member 3 */}
             <div className="bg-white rounded-xl shadow-md overflow-hidden p-6 text-center">
               <img
-                src="https://randomuser.me/api/portraits/women/65.jpg"
+                src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png"
                 alt="Team member"
                 className="w-32 h-32 rounded-full mx-auto mb-4"
               />
-              <h5 className="text-xl font-bold mb-1">Priya Patel</h5>
-              <p className="text-gray-500 mb-3">Head of Education</p>
-              <p className="text-gray-600">
-                Curriculum developer and former school administrator
-              </p>
+              <h5 className="text-xl font-bold mb-1">Rishabh Tripathi</h5>
+              <p className="text-gray-500 mb-3">Team Member</p>
+              <p className="text-gray-600"></p>
             </div>
 
             {/* Team Member 4 */}
             <div className="bg-white rounded-xl shadow-md overflow-hidden p-6 text-center">
               <img
-                src="https://randomuser.me/api/portraits/men/75.jpg"
+                src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png"
                 alt="Team member"
                 className="w-32 h-32 rounded-full mx-auto mb-4"
               />
-              <h5 className="text-xl font-bold mb-1">David Kim</h5>
-              <p className="text-gray-500 mb-3">Product Lead</p>
-              <p className="text-gray-600">
-                EdTech entrepreneur with 3 successful startups
-              </p>
+              <h5 className="text-xl font-bold mb-1">Niyati Chugh</h5>
+              <p className="text-gray-500 mb-3">Team Member</p>
+              <p className="text-gray-600"></p>
             </div>
           </div>
 
