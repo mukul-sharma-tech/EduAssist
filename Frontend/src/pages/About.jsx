@@ -377,7 +377,7 @@ const About = () => {
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-1/2 flex justify-center">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0k5An7bsMlNUkK3kzwnoNM8Ge90-RaDLVgw&s"
+                src="/sdg-4-1024x1024.png"
                 alt="SDG 4"
                 className="max-w-xs"
               />
