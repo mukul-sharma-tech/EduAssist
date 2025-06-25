@@ -139,7 +139,7 @@ const HomePage = () => {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              How EduTech Helps
+              How EduAssist Helps
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Our AI-powered platform transforms education by supporting
@@ -214,7 +214,7 @@ const HomePage = () => {
                 Supporting UN Sustainable Development Goal 4
               </h2>
               <p className="text-xl mb-10 leading-relaxed">
-                EduTech aligns with SDG 4: Quality Education by helping ensure
+                EduAssist aligns with SDG 4: Quality Education by helping ensure
                 inclusive and equitable quality education through:
               </p>
               <div className="space-y-4 mb-10">
@@ -259,7 +259,7 @@ const HomePage = () => {
             {[
               {
                 quote:
-                  "EduTech has cut my grading time by 70%, allowing me to focus on creating better lessons and giving more one-on-one attention to students who need it most.",
+                  "EduAssist has cut my grading time by 70%, allowing me to focus on creating better lessons and giving more one-on-one attention to students who need it most.",
                 name: "Sarah Johnson",
                 role: "High School English Teacher",
                 image: "https://randomuser.me/api/portraits/women/45.jpg",
@@ -273,7 +273,7 @@ const HomePage = () => {
               },
               {
                 quote:
-                  "In our rural school with limited resources, EduTech has been transformative. Our teachers are less stressed and our students are performing better than ever.",
+                  "In our rural school with limited resources, EduAssist has been transformative. Our teachers are less stressed and our students are performing better than ever.",
                 name: "Amina Diallo",
                 role: "School Administrator",
                 image: "https://randomuser.me/api/portraits/women/68.jpg",
@@ -318,7 +318,7 @@ const HomePage = () => {
           </h2>
           <p className="text-xl mb-10 leading-relaxed">
             Join thousands of educators who are saving time and improving
-            student outcomes with EduTech.
+            student outcomes with EduAssist.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <a
