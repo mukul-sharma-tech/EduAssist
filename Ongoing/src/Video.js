@@ -383,15 +383,51 @@ class Video extends Component {
           connections[socketListId] = new RTCPeerConnection(
             peerConnectionConfig
           );
-          // Wait for their ice candidate
+          // --- ICE DEBUG LOGGING ---
           connections[socketListId].onicecandidate = function (event) {
             if (event.candidate != null) {
+              if (
+                event.candidate.candidate &&
+                event.candidate.candidate.includes("stun")
+              ) {
+                console.log(
+                  `[ICE][STUN] Candidate for ${socketListId}:`,
+                  event.candidate.candidate
+                );
+              } else if (
+                event.candidate.candidate &&
+                event.candidate.candidate.includes("turn")
+              ) {
+                console.log(
+                  `[ICE][TURN] Candidate for ${socketListId}:`,
+                  event.candidate.candidate
+                );
+              } else {
+                console.log(
+                  `[ICE] Candidate for ${socketListId}:`,
+                  event.candidate
+                );
+              }
               socket.emit(
                 "signal",
                 socketListId,
                 JSON.stringify({ ice: event.candidate })
               );
+            } else {
+              console.log(`[ICE] All ICE candidates sent for ${socketListId}`);
             }
+          };
+          connections[socketListId].oniceconnectionstatechange = function () {
+            console.log(
+              `[ICE] Connection state for ${socketListId}:`,
+              connections[socketListId].iceConnectionState
+            );
+          };
+          connections[socketListId].onicegatheringstatechange = function () {
+            console.log(
+              `[ICE] Gathering state for ${socketListId}:`,
+              connections[socketListId].iceGatheringState
+            );
           };
 
           // Wait for their video stream
