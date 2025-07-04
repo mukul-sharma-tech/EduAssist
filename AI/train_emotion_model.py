@@ -43,13 +43,19 @@ val_gen = train_datagen.flow_from_directory(
     shuffle=True
 )
 
-# Compute class weights to handle imbalance
+
+# Compute class weights to handle imbalance (optional, but still recommended)
+from collections import Counter
+labels = train_gen.classes
+class_counts = Counter(labels)
+print(f"Class distribution in training set: {class_counts}")
 class_weights = compute_class_weight(
     class_weight='balanced',
-    classes=np.unique(train_gen.classes),
-    y=train_gen.classes
+    classes=np.unique(labels),
+    y=labels
 )
 class_weights = dict(enumerate(class_weights))
+print(f"Class weights: {class_weights}")
 
 # Model
 model = Sequential([
@@ -65,7 +71,15 @@ model = Sequential([
 model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['accuracy'])
 
 # Train with class weights
-model.fit(train_gen, validation_data=val_gen, epochs=50, class_weight=class_weights)
+history = model.fit(
+    train_gen,
+    validation_data=val_gen,
+    epochs=50,
+    class_weight=class_weights
+)
 model.save('emotion_model.h5')
 
+# Optional: print final training/validation accuracy
+print(f"Final training accuracy: {history.history['accuracy'][-1]:.4f}")
+print(f"Final validation accuracy: {history.history['val_accuracy'][-1]:.4f}")
 print('Model trained and saved as emotion_model.h5')

@@ -5,5 +5,8 @@ opencv-python
 numpy
 mediapipe==0.10.0
 fer
-TensorFlow
 deepface
+numpy
+tensorflow>=2.6.0
+keras>=2.6.0
+# using python 3.10.8
