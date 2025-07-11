@@ -1,0 +1,60 @@
+/* App.css - Modern Blue-White Theme */
+
+.app-container {
+  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f8fafc;
+  min-height: 100vh;
+  position: relative;
+}
+
+.home-button {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 10000;
+  background: white;
+  border: 2px solid #1e40af;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(30, 64, 175, 0.15);
+  padding: 8px 20px;
+  color: #1e40af;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-button:hover {
+  background: #f0f4ff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(30, 64, 175, 0.2);
+}
+
+.home-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.15);
+}
+
+/* Animation for smoother transitions */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Route transitions */
+.route-container {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .home-button {
+    padding: 6px 16px;
+    font-size: 14px;
+    top: 12px;
+    left: 12px;
+  }
+}

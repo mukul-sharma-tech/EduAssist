@@ -78,6 +78,7 @@ import Register from "./pages/Register";
 import CustomSignup from "./pages/CustomSignup";
 import Login from "./pages/Login";
 import TeacherDashboard from "./pages/TeacherDashboard";
+import StudentDashboard from "./pages/StudentDashboard";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -112,6 +113,7 @@ const AppLayout = () => {
         <Route path="/register" element={<CustomSignup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+        <Route path="/student-dashboard" element={<StudentDashboard />} />
 
 
 
