@@ -1,7 +1,12 @@
 flask
 flask-cors
 gunicorn
-opencv-python-headless==4.9.0.80
-numpy==1.21.6
+opencv-python
+numpy
 mediapipe==0.10.0
+fer
 deepface
+numpy
+tensorflow>=2.6.0
+keras>=2.6.0
+# using python 3.10.8
