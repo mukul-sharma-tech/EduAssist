@@ -1,0 +1,7 @@
+flask
+flask-cors
+gunicorn
+opencv-python-headless==4.9.0.80
+numpy==1.21.6
+mediapipe==0.10.0
+deepface
