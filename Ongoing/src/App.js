@@ -27,7 +27,7 @@ class App extends Component {
         <button
           style={homeButtonStyle}
           onClick={() => {
-            window.location.href = "https://edu-assist-alpha.vercel.app/";
+            window.location.href = "https://edunite-x.vercel.app/";
           }}
         >
           Home

@@ -74,6 +74,11 @@ import StoryNarrator from "./pages/explain/StoryNarrator";
 import ChooseSubject from "./pages/oralTest/ChooseSubject";
 import InterviewPlatform from "./pages/oralTest/InterviewPlatform";
 import Result from "./pages/oralTest/Result";
+import Register from "./pages/Register";
+import CustomSignup from "./pages/CustomSignup";
+import Login from "./pages/Login";
+import TeacherDashboard from "./pages/TeacherDashboard";
+import StudentDashboard from "./pages/StudentDashboard";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -81,6 +86,7 @@ const AppLayout = () => {
     "/oral-test",
     "/result",
     "/oral-assess-choose-subject",
+    "/register",
   ].includes(location.pathname);
 
   return (
@@ -104,6 +110,13 @@ const AppLayout = () => {
         <Route path="/oral-assess-choose-subject" element={<ChooseSubject />} />
         <Route path="/oral-test" element={<InterviewPlatform />} />
         <Route path="/result" element={<Result />} />
+        <Route path="/register" element={<CustomSignup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+        <Route path="/student-dashboard" element={<StudentDashboard />} />
+
+
+
       </Routes>
       {!hideNavAndFooter && <Footer />}
     </>
