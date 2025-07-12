@@ -5,8 +5,6 @@ Team Members:
 
 - Mukul Sharma (Team Leader)
 - Anagh Miglani
-- Rishabh Tripathi
-- Niyati Chugh
 
 ---
 
@@ -64,14 +62,15 @@ Modern classrooms struggle to provide interactive, personalized, and tech-enable
 - Express.js
 - Flask
 
-### 🧬 AI Libraries
+### 🧬 AI Libraries and Models
 
-- DeepFace (MAFW)
-- OpenCV (for visual analysis)
-- Transformers (NLP)
-- TensorFlow / PyTorch
-- Clerk (authentication)
-- Gemini AI
+- OpenVino
+  - handwritten-english-recognition-0001 (OpenVino / Open Model Zoo)
+  - emotions-recognition-retail-0003 (OpenVino / Open Model Zoo)
+- OpenCV
+- SciKit-Image
+- google-generativeai
+  - gemini-1.5-flash (for small AI tasks)
 
 ### 📡 Real-Time Communication
 
@@ -80,7 +79,7 @@ Modern classrooms struggle to provide interactive, personalized, and tech-enable
 
 ### 🗃 Database
 
-- MongoDB
+- SupaBase
 
 ---
 
@@ -108,14 +107,6 @@ Modern classrooms struggle to provide interactive, personalized, and tech-enable
 Link to live demo  
 Link: [https://edu-assist-alpha.vercel.app/]
 
----
-
-## 🌐 Detailed PPT
-
-Link: [https://www.canva.com/design/DAGrFExLf_k/NJzuujhyz7OfDLqhh5nWZA/edit?utm_content=DAGrFExLf_k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton]
-
----
-
 ## Code Structure
 
 - _On Main Branch_
@@ -128,23 +119,10 @@ Link: [https://www.canva.com/design/DAGrFExLf_k/NJzuujhyz7OfDLqhh5nWZA/edit?utm_
   - Immersive, voice-guided models for better conceptual clarity.
   - Take an oral assessment test of desired topics and subject with a 3d Teacher and get instant result and feedback with behaviour analysis.
   - You can solve any questions or doubt with proper solution and explanation in assignment solve section.
-
-- _On Video Branch_
-
   - Video Calling Feature with AI ML integrated
   - Real-time student engagement tracking via facial recognition.
   - Personalized feedback for students and insights dashboard for teachers.
   - Speech-based topic detection during live classes.
-
-- _On Rishbah Branch_
-  - Student Workflow Tracker
-  - Add syllabus, deadlines, and study goals.
-  - Gemini AI generates personalized plans and suggestions.
-  - Real-time progress dashboard.
-  - Proper Data Modelling of whole project.
-  - Authentication using CLERK.
-
----
 
 ## 🤝 Contributing
 
